@@ -1,4 +1,4 @@
-package Question.WaitAndSleep;
+package Questions.WaitAndSleep;
 
 import java.util.stream.Stream;
 

@@ -1,4 +1,4 @@
-package Question.WaitAndSleep;
+package Questions.WaitAndSleep;
 
 public class Test2 {
     private final static Object lock = new Object();
