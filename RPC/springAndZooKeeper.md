@@ -398,7 +398,7 @@ public class RpcRequestHandler implements RequestHandler {
 
 下图说明了整个RPC程序的关系。
 
-![procedure-of-rpc](./figures/procedure-of-rpc.png)
+![image](./figures/procedure-of-rpc.png)
 
 
 
@@ -406,13 +406,13 @@ public class RpcRequestHandler implements RequestHandler {
 
 下图说明了spring部分。
 
-![procedure-of-rpc](./figures/spring-part.png)
+![image](./figures/spring-part.png)
 
 
 
 下图为zookeeper部分
 
-![procedure-of-rpc](./figures/zookeeper-rpc.png)
+![image](./figures/zookeeper-rpc.png)
 
 
 
@@ -420,7 +420,7 @@ public class RpcRequestHandler implements RequestHandler {
 
 其中一些箭头含义如下：
 
-![procedure-of-rpc](./figures/uml.png)
+![image](./figures/uml.png)
 
 
 
