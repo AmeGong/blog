@@ -128,13 +128,12 @@ public class Singleton {
     private volatile static Singleton singleton;
     private Singleton() {};
 
-    // 1. getInstance需要使用synchronized修饰，这样当Singleton.class被锁后，其他线程的getInstance方法会阻塞
-    public synchronized static Singleton getInstance() {
-        // 2. 先判断singleton是否已经实例化过
+    public static Singleton getInstance() {
+        // 1. 先判断singleton是否已经实例化过
         if (singleton == null) {
-            // 3. 如果没有实例化过就对Singleton.class对象加锁，这样其他线程调用getInstance方法非阻塞
+            // 2. 如果没有实例化过就对Singleton.class对象加锁，这样其他线程调用getInstance方法非阻塞
             synchronized(Singleton.class) {
-                // 4. 线程恢复，如果其他线程实例化了singleton，则什么都不做退出，如果其他线程没有实例化singleton，则当前线程去实例化singleton
+                // 3. 线程恢复，如果其他线程实例化了singleton，则什么都不做退出，如果其他线程没有实例化singleton，则当前线程去实例化singleton
                 if (singleton == null) {
                     singleton = new Singleton();
                 }
@@ -151,25 +150,3 @@ public class Singleton {
 * 在分配的内存空间中初始化singleton
 * 将singleton指向分配的内存空间
 由于JVM指令重拍的特性，在多线程执行的情况下可能比变成1->3->2。这样还没有初始化对象就有了对象的指针，其他线程在判断singleton是否实例化时就会认为singleton已经实例化完成而返回损坏的对象。
-
-
-因为synchronized修饰静态方法与synchronized用于类代码块类似，所以双重校验单例模式也可以这么实现。
-```
-public class Singleton {
-    private volatile static Singleton singleton;
-    private Singleton() {};
-
-    public static Singleton getInstance2() {
-        synchronized(Singleton.class) {
-            if (singleton == null) {
-                synchronized(Singleton.class) {
-                    if (singleton == null) {
-                        singleton = new Singleton();
-                    }
-                }
-            }
-            return singleton; 
-        }
-    }
-}
-```
